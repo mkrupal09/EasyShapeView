@@ -1,7 +1,9 @@
 # EasyShapeView
 
+<img alt="Easy Shape View Library" src="https://github.com/mkrupal09/EasyAdapter/blob/master/ss1.png" width = "500" height = "800" hspace="5"/>
+
 ```xml
-<LinearLayout
+ <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
