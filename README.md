@@ -1,6 +1,6 @@
 # EasyShapeView
 
-<img alt="Easy Shape View Library" src="https://github.com/mkrupal09/EasyShapeView/blob/master/ss1.png" width = "500" height = "800" hspace="5"/>
+<img alt="Easy Shape View Library" src="https://github.com/mkrupal09/EasyShapeView/blob/master/ss1.png" width = "500" height = "900" hspace="5"/>
 
 ```xml
  <LinearLayout
