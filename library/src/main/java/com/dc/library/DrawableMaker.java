@@ -17,14 +17,8 @@ public class DrawableMaker {
   public static final int OVAL = GradientDrawable.OVAL;
   public static final int LINE = GradientDrawable.LINE;
   public static final int RING = GradientDrawable.RING;
-
-
-  private int shape;
-  private float roundedRadius;
-  private int color;
-  private int strokeWidth;
-  private int strokeColor;
   private GradientDrawable drawable;
+
 
   public static DrawableMaker create() {
     return new DrawableMaker(new GradientDrawable());
@@ -34,41 +28,52 @@ public class DrawableMaker {
     return new DrawableMaker(gradientDrawable);
   }
 
-  public static DrawableMaker oval(){
+  public static DrawableMaker oval() {
     return new DrawableMaker(new GradientDrawable()).shape(OVAL);
   }
 
-  public static DrawableMaker rectangle(){
+  public static DrawableMaker rectangle() {
     return new DrawableMaker(new GradientDrawable()).shape(RECT);
   }
 
   public DrawableMaker shape(int shape) {
-    this.shape = shape;
+    drawable.setShape(shape);
     return this;
   }
 
   public DrawableMaker cornerRadius(float roundedRadius) {
-    this.roundedRadius = roundedRadius;
+    drawable.setCornerRadii(new float[]{roundedRadius, roundedRadius, roundedRadius,
+            roundedRadius, roundedRadius, roundedRadius, roundedRadius, roundedRadius});
     return this;
   }
 
+
   public DrawableMaker color(int color) {
-    this.color = color;
+    drawable.setColor(color);
+    return this;
+  }
+
+  public DrawableMaker gradients(int start, int center, int end) {
+    drawable.setColors(new int[]{start, center, end});
+    return this;
+  }
+
+  public DrawableMaker gradients(int start, int end) {
+    drawable.setColors(new int[]{start, end});
+    return this;
+  }
+
+  public DrawableMaker gradientAngle(GradientDrawable.Orientation orientation) {
+    drawable.setOrientation(orientation);
     return this;
   }
 
   public DrawableMaker border(int width, int color) {
-    this.strokeWidth = width;
-    this.strokeColor = color;
+    drawable.setStroke(width, color);
     return this;
   }
 
   public Drawable build() {
-    drawable.setShape(shape);
-    drawable.setColor(color);
-    drawable.setStroke(strokeWidth, strokeColor);
-    drawable.setCornerRadii(new float[]{roundedRadius, roundedRadius, roundedRadius,
-            roundedRadius, roundedRadius, roundedRadius, roundedRadius, roundedRadius});
     return drawable;
   }
 }

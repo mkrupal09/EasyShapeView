@@ -23,7 +23,7 @@ public class DrawableBindingUtils {
     if (disable != null)
       background.addState(new int[]{-android.R.attr.state_enabled}, disable);
     if (focused != null)
-      background.addState(new int[]{-android.R.attr.state_focused}, focused);
+      background.addState(new int[]{android.R.attr.state_focused}, focused);
     if (normal != null)
       background.addState(StateSet.WILD_CARD, normal);
 

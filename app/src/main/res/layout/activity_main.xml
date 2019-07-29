@@ -6,6 +6,10 @@
 
         <import type="com.dc.library.DrawableMaker" />
 
+        <import type="android.graphics.drawable.GradientDrawable.Orientation" />
+
+        <import type="android.graphics.drawable.GradientDrawable" />
+
         <import type="android.graphics.Color" />
     </data>
 
@@ -20,15 +24,30 @@
             android:orientation="vertical"
             android:padding="10dp">
 
-
-            <View
-                android:id="@+id/tvv"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="center"
-                bind:disableBackground="@{DrawableMaker.create().shape(DrawableMaker.OVAL).color(Color.BLACK).build()}"
-                bind:normalBackground="@{DrawableMaker.create().shape(DrawableMaker.RECT).color(@color/colorPrimary).build()}"
-                bind:pressedBackground="@{DrawableMaker.create().shape(DrawableMaker.OVAL).color(Color.GREEN).build()}" />
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    bind:disableBackground="@{DrawableMaker.oval().color(Color.BLACK).build()}"
+                    bind:normalBackground="@{DrawableMaker.rectangle().color(@color/colorPrimary).build()}"
+                    bind:pressedBackground="@{DrawableMaker.oval().color(Color.GREEN).build()}" />
+
+                <View
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    bind:disableBackground="@{DrawableMaker.oval().color(Color.BLACK).build()}"
+                    bind:normalBackground="@{DrawableMaker.oval().color(@color/colorAccent).build()}"
+                    bind:pressedBackground="@{DrawableMaker.oval().color(Color.GREEN).build()}" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/tvMain"
@@ -38,11 +57,11 @@
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="@string/click_me"
-                bind:disableBackground="@{DrawableMaker.create().shape(DrawableMaker.RECT).color(Color.BLACK).build()}"
+                bind:disableBackground="@{DrawableMaker.rectangle().color(Color.BLACK).build()}"
                 bind:disableTextColor="@{Color.BLACK}"
-                bind:normalBackground="@{DrawableMaker.create().shape(DrawableMaker.RECT).color(Color.RED).border(5,@color/colorPrimary).build()}"
-                bind:normalTextColor="@{Color.WHITE}"
-                bind:pressedBackground="@{DrawableMaker.create().shape(DrawableMaker.RECT).cornerRadius(@dimen/space_med).color(Color.GREEN).build()}"
+                bind:normalBackground="@{DrawableMaker.rectangle().border(5,@color/colorPrimary).build()}"
+                bind:normalTextColor="@{@color/colorPrimary}"
+                bind:pressedBackground="@{DrawableMaker.rectangle().border(5,@color/colorPrimary).color(Color.GREEN).build()}"
                 bind:pressedTextColor="@{@color/colorPrimary}" />
 
 
@@ -51,6 +70,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="@string/hello_android"
+                android:textColor="@android:color/white"
                 bind:disableBackground="@{@drawable/settings_switch_back_on}"
                 bind:normalBackground="@{@drawable/settings_switch_back_off}"
                 bind:pressedBackground="@{@drawable/settings_switch_back_on}" />
@@ -74,12 +96,10 @@
             <View
                 android:id="@+id/viewFromDrawable"
                 android:layout_width="30dp"
-                android:layout_height="30dp" />
+                android:layout_height="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp" />
 
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/app_name" />
 
             <android.support.v7.widget.AppCompatEditText
                 android:layout_width="match_parent"
@@ -88,9 +108,9 @@
                 bind:focusedBackground="@{DrawableMaker.rectangle().cornerRadius(@dimen/space_med).color(Color.GREEN).build()}"
                 bind:focusedHintTextColor="@{Color.WHITE}"
                 bind:focusedTextColor="@{Color.WHITE}"
-                bind:normalBackground="@{DrawableMaker.rectangle().color(Color.RED).border(5,@color/colorPrimary).build()}"
-                bind:normalHintTextColor="@{Color.BLACK}"
-                bind:normalTextColor="@{Color.BLACK}" />
+                bind:normalBackground="@{DrawableMaker.rectangle().color(Color.RED).border(5,@color/colorPrimary).gradients(@color/colorPrimary,@color/colorAccent).gradientAngle(GradientDrawable.Orientation.BOTTOM_TOP).build()}"
+                bind:normalHintTextColor="@{Color.WHITE}"
+                bind:normalTextColor="@{Color.WHITE}" />
 
         </LinearLayout>
     </ScrollView>
