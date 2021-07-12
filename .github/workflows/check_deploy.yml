@@ -1,6 +1,6 @@
-name : create debug build
+name: create debug build
 
-on: [push]
+on: [ push ]
 
 
 jobs:
@@ -11,12 +11,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       # 2
-      - name: Generate Release APK
+      - name: Setup JDK
         uses: actions/setup-jdk@v1
         with:
           java-version: '11' # The OpenJDK version to make available on the path
           architecture: 'x64' # defaults to 'x64'
-        run: ./gradlew assembleDebug
+      #3
+          - name: Create Build
+           run: ./gradlew assembleDebug
+
       # 4
       - name: Upload artificats
       - uses: actions/upload-artifact@master
