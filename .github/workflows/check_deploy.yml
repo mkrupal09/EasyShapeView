@@ -12,10 +12,11 @@ jobs:
         uses: actions/checkout@v2
       # 2
       - name: Setup JDK
-        uses: actions/setup-jdk@v1
+      - uses: actions/setup-jdk@v1
         with:
           java-version: '11' # The OpenJDK version to make available on the path
           architecture: 'x64' # defaults to 'x64'
+      - run: java -cp java HelloWorldApp
 
       # 3
       - name: Generate Release APK
