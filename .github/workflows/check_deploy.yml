@@ -12,8 +12,13 @@ jobs:
         uses: actions/checkout@v2
       # 2
       - name: Generate Release APK
+      - uses: joschi/setup-jdk@v2
+        with:
+          java-version: '11' # The OpenJDK version to make available on the path
+          architecture: 'x64' # defaults to 'x64'
         run: ./gradlew assembleDebug
       # 4
+      - name: Upload artificats
       - uses: actions/upload-artifact@master
         with:
           name: app-debug.apk
