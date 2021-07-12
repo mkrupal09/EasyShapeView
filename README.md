@@ -1,9 +1,9 @@
 # EasyShapeView
 
+
+
 <img alt="Easy Shape View Library" src="https://github.com/mkrupal09/EasyShapeView/blob/master/ss1.png" width = "500" height = "900" hspace="5"/>
 
-
-Description 
 - You can directly set disable,normal,pressed background to any view.
 - You can directly set disable,enable,pressed,focused,normal text/hint color to textview
 - You can directly set check,uncheck drawable to checkbox,radiobutton
