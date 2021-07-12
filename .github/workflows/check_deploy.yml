@@ -25,7 +25,7 @@ jobs:
       - name: Upload to Google Drive
         uses: satackey/action-google-drive@v1
         with:
-          skicka-tokencache-json: 4/1AX4XfWgLgSRWDdifNA8XIYojgfaL6s1KStRO9qwxQeXKh_uoL0tER2YTFKs
+          skicka-tokencache-json:  ${{ secrets.SKICKA_TOKENCACHE_JSON }}
           upload-from: app/build/outputs/apk/debug/app-debug.apk
           upload-to: /apks/
 
