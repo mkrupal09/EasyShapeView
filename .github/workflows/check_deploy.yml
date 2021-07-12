@@ -17,7 +17,6 @@ jobs:
         with:
           java-version: '11' # The OpenJDK version to make available on the path
           architecture: 'x64' # defaults to 'x64'
-        command: "java --version"
 
       # 3
       - name: Generate Release APK
