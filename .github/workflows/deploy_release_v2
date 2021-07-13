@@ -1,0 +1,52 @@
+#https://www.raywenderlich.com/19407406-continuous-delivery-for-android-using-github-actions
+#https://github.com/satackey/action-google-drive
+
+name: create debug build
+
+#on: [ push ]
+
+on:
+  push:
+    branches:
+      master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # 1
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # 2
+      # because before 1.8 version we're getting JAXBException
+      - name: Set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+
+      #3 Generate release apk
+      - name: Generate Release APK
+        run : ./gradlew assembleRelease
+
+      #4
+      - name: Upload to Google Drive
+        uses: satackey/action-google-drive@v1
+        with:
+          skicka-tokencache-json: ${{ secrets.SKICKA_TOKENCACHE_JSON }}
+          upload-from: app/build/outputs/apk/debug/app-debug.apk
+          upload-to: /app.apk
+
+          # For those who set up Google Drive API client ID and secret themselves
+          google-client-id: 173910524643-hnrq5frst9aiilpq8hb8d1d7pcsh1ogk.apps.googleusercontent.com
+          google-client-secret: jDhSc64PE9pz3hvPMIPlAssA
+
+      #5
+      # to upload files on firebase
+      - name: upload artifact to Firebase App Distribution
+        uses: wzieba/Firebase-Distribution-Github-Action@v1
+        with:
+          appId: ${{secrets.FIREBASE_APP_ID}}
+          token: ${{secrets.FIREBASE_TOKEN}}
+          groups: mytesters
+          file: app/build/outputs/apk/debug/app-debug.apk

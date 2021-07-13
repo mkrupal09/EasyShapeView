@@ -1,7 +1,14 @@
+#https://www.raywenderlich.com/19407406-continuous-delivery-for-android-using-github-actions
+#https://github.com/satackey/action-google-drive
+
 name: create debug build
 
-on: [ push ]
+#on: [ push ]
 
+on:
+  push:
+    branches:
+      master
 
 jobs:
   build:
@@ -12,13 +19,14 @@ jobs:
         uses: actions/checkout@v2
 
       # 2
+      # because before 1.8 version we're getting JAXBException
       - name: Set up JDK 1.8
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
 
       # 3
-      - name: Generate Release APK
+      - name: Generate Debug APK
         run: ./gradlew assembleDebug
 
       #4
@@ -34,6 +42,7 @@ jobs:
           google-client-secret: jDhSc64PE9pz3hvPMIPlAssA
 
       #5
+      # to upload files on firebasetest
       - name: upload artifact to Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1
         with:
