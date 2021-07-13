@@ -25,10 +25,19 @@ jobs:
       - name: Upload to Google Drive
         uses: satackey/action-google-drive@v1
         with:
-          skicka-tokencache-json:  ${{ secrets.SKICKA_TOKENCACHE_JSON }}
+          skicka-tokencache-json: ${{ secrets.SKICKA_TOKENCACHE_JSON }}
           upload-from: app/build/outputs/apk/debug/app-debug.apk
           upload-to: /app.apk
 
           # For those who set up Google Drive API client ID and secret themselves
           google-client-id: 173910524643-hnrq5frst9aiilpq8hb8d1d7pcsh1ogk.apps.googleusercontent.com
           google-client-secret: jDhSc64PE9pz3hvPMIPlAssA
+
+      #5
+      - name: upload artifact to Firebase App Distribution
+          uses: wzieba/Firebase-Distribution-Github-Action@v1
+          with:
+            appId: ${{secrets.FIREBASE_APP_ID}}
+            token: ${{secrets.FIREBASE_TOKEN}}
+            groups: mytesters
+            file:  app/build/outputs/apk/debug/app-debug.apk
